@@ -30,12 +30,13 @@
     <!-- Flaticon css -->
     <link rel="stylesheet" href="css/flaticon.css">
     <!-- Magnific css -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <!-- <link rel="stylesheet" href="css/magnific-popup.css"> -->
     <!-- Main style css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="home-3">
+ 
     <!-- Preloader Start-->
     <div id="loader-wrapper">
         <div class="book">
@@ -247,7 +248,7 @@
                     <div class="row d-flex">
                         <div class="col-xl-7 col-md-6">
                            <div class="banner-caption text-left">
-                            <h2  class="brand-color">welcome to Consultancy</h2>
+                            <h2  class="brand-color" id="welcome1"></h2>
                             <h1 class="text-left">In the Legal World</h1>
                             <p>FiveStar comes with a collection of six astounding and fully customizable .</p>
                             <a href="#">FREE CONSULTATION</a>
@@ -262,7 +263,7 @@
 </div>
 
 
-<div class="banner-overlay-form">
+<!-- <div class="banner-overlay-form">
     <div class="container">
         <div class="row">
             <div class="banner-contact">
@@ -277,7 +278,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 </section>
 <!-- Banner Part End -->
 
@@ -287,8 +288,8 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="section-head">
-                    <h2>Why Us</h2>
-                    <p>Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard unknown printer took a quis nostrud exercitatliquip.</p>
+                    <h2 id="sds"></h2>
+                    <p id="jnj"></p>
                 </div>
             </div>
         </div>
@@ -301,8 +302,8 @@
                         <h5><a class="" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >Student Consultancy</a></h5>
                     </div>
                     <div id="collapseOne" class="accodian-result collapse show" data-parent="#accordion">
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
-                        <p>Don't look even slightly believable. If you are going to assage of Lorem Ipsum, you need to be sure there isn't an embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat pred chunks as necessary.There are many variations of passages of Lorem Ipsum.</p>
+                        <p id="welcome">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                        <p id="student-consultancy-paragraph"></p>
                     </div>
                 </div>
                 <!-- Single Accordion -->
@@ -395,8 +396,8 @@
             <div class="col-lg-4 col-sm-6">
                 <div class="practise-3-item">
                     <div class="icon-box"><i class="flaticon-passport"></i></div>
-                    <h5><a href="#">Immigration</a></h5>
-                    <p>Don't look even slightly btkelie.Don't look even slightly believable. If you are going to uspassage of Lorem Ipsum, you need slightly.</p>
+                    <h5><a href="#" id="immigration"></a></h5>
+                    <p id="immigration-text"</p>
                     <a href="#">→</a>
                 </div>
             </div>
@@ -438,9 +439,9 @@
         <div class="col-12 col-sm-6 col-lg-3">
             <div class="single-table">
 
-                <h6>free</h6>
+                <h6 id="package-1"></h6>
                 <div class="table_price">
-                    <span class="t-price">$100</span>
+                    <span class="t-price" id="package-1-price"></span>
                     <span class="duration">Yearly</span>
                 </div>
                 <div class="list-part">
@@ -845,7 +846,47 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsBrMPsyNtpwKXPPpG54XwJXnyobfMAIc"></script>
 <!--Custom js  -->
 <script src="js/custom.js"></script>
+<script>
+  async function fetchData() {
+        try {
+            var apiUrl = "https://cms-managment.vercel.app/cms/api/page-data/fermglobal/home_page";
 
+            // Fetch data from the API
+            const response = await fetch(apiUrl);
+            console.log("Responseeee", response);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            console.log("Dataaaa", data.cms);
+              for (var i = 0; i < data.cms.length; i++) {
+                var key = data.cms[i].key;
+                var value = data.cms[i].value
+                var ele = document.getElementById(key)
+                if(ele) {
+                    console.log("Eleee",ele)
+                    ele.innerHTML = value;
+
+               }
+                console.log("DataIII", data.cms[i])
+                // Create a div for each key-value pair and append it to the dataDisplay div
+               }
+
+            // Display data in the div
+            
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            document.getElementById("dataDisplay").innerHTML = `Error fetching data: ${error.message}`;
+        }
+    }
+
+    // Call the fetchData function
+    fetchData();
+
+</script>
 </body>
 
 </html>

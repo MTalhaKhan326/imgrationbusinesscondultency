@@ -225,25 +225,27 @@
 
 <!-- Banner Part Start -->
 <section class="banner-3-part">
-    <div class="swiper-container banner-slider-3" data-swiper-config='{"loop": true, "effect": "fade", "speed": 800, "autoplay": 5000, "paginationClickable": true ,"crossFade" : true }'>
-        <div class="swiper-wrapper">
-            <!-- Single Slider -->
-            <div class="swiper-slide banner-3-item" data-bg-image="images/bg/slider-3.jpg">
+    <!-- data-swiper-config='{"loop": true, "effect": "fade", "speed": 800, "autoplay": 5000, "paginationClickable": true
+    ,"crossFade" : true }' -->
+    <!-- <div class="swiper-container banner-slider-3" >
+        <div class="swiper-wrapper"> -->
+            <!-- Single Slider 1 -->
+            <div class="swiper-slide banner-3-item" data-bg-image="images/bg/slider-3.jpg" id="background_image">
                 <div class="container">
                     <div class="row d-flex">
                         <div class="col-xl-7 col-md-6">
                             <div class="banner-caption text-left">
-                                <h2  class="brand-color">The Law Firm</h2>
-                                <h1 class="text-left">GET LEGAL HELPING </h1>
-                                <p>One hour consultation for us to answer all of your questions! been the industry's standard.</p>
-                                <a href="#">FREE CONSULTATION</a>
+                                <h2  class="brand-color" id="banner_heading"></h2>
+                                <h1 class="text-left" id="banner_subheading"> </h1>
+                                <p id="banner_paragraph"></p>
+                                <a href="#" id="banner_button"></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Single Slider -->
-            <div class="swiper-slide banner-3-item" data-bg-image="images/bg/slider-5.jpg">
+            <!-- <div class="swiper-slide banner-3-item" data-bg-image="images/bg/slider-5.jpg">
                 <div class="container">
                     <div class="row d-flex">
                         <div class="col-xl-7 col-md-6">
@@ -256,11 +258,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div> -->
+    <!-- </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
-</div>
+</div> -->
 
 
 <!-- <div class="banner-overlay-form">
@@ -289,7 +291,7 @@
             <div class="col-12 text-center">
                 <div class="section-head">
                     <h2 id="sds"></h2>
-                    <p id="jnj"></p>
+                    <!-- <p id="jnj"></p> -->
                 </div>
             </div>
         </div>
@@ -299,44 +301,43 @@
                 <!-- Single Accordion -->
                 <div class="accodian-item">
                     <div class="accodian-head active d-flex align-items-center" >
-                        <h5><a class="" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >Student Consultancy</a></h5>
+                        <h5><a class="" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" id="dropdown1_name"></a></h5>
                     </div>
                     <div id="collapseOne" class="accodian-result collapse show" data-parent="#accordion">
-                        <p id="welcome">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
-                        <p id="student-consultancy-paragraph"></p>
+                        <p id="dropdown1_detail"></p>
+                        <!-- <p id="student-consultancy-paragraph"></p> -->
                     </div>
                 </div>
                 <!-- Single Accordion -->
                 <div class="accodian-item">
                     <div class="accodian-head d-flex align-items-center" >
-                        <h5><a class="collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Spouse Consultancy</a></h5>
+                        <h5><a class="collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="dropdown2_name"></a></h5>
 
                     </div>
                     <div id="collapseTwo" class="accodian-result collapse" data-parent="#accordion">
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
-                        <p>Don't look even slightly believable. If you are going to assage of Lorem Ipsum, you need to be sure there isn't an embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat pred chunks as necessary.There are many variations of passages of Lorem Ipsum .</p>
-                    </div>
+                        <p id="dropdown2_detail"></p>
+                         </div>
                 </div>
                 <!-- Single Accordion -->
                 <div class="accodian-item">
                     <div class="accodian-head d-flex align-items-center" >
-                        <h5><a href="" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Business Consultancy</a></h5>
+                        <h5><a href="" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="dropdown3_name"></a></h5>
 
                     </div>
                     <div id="collapseThree" class="accodian-result collapse" data-parent="#accordion">
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
-                        <p>Don't look even slightly believable. If you are going to assage of Lorem Ipsum, you need to be sure there isn't an embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat pred chunks as necessary.There are many variations of passages of Lorem Ipsum.</p>
+                        <p id="dropdown3_detail"></p>
+                        <!-- <p>Don't look even slightly believable. If you are going to assage of Lorem Ipsum, you need to be sure there isn't an embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat pred chunks as necessary.There are many variations of passages of Lorem Ipsum.</p> -->
                     </div>
                 </div>
                 <!-- Single Accordion -->
                 <div class="accodian-item">
                     <div class="accodian-head d-flex align-items-center" >
-                        <h5><a href="" class="collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Immigration Consultancy</a></h5>
+                        <h5><a href="" class="collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" id="dropdown4_name"></a></h5>
 
                     </div>
                     <div id="collapseFour" class="accodian-result collapse" data-parent="#accordion">
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
-                        <p>Don't look even slightly believable. If you are going to assage of Lorem Ipsum, you need to be sure there isn't an embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat pred chunks as necessary.There are many variations of passages of Lorem Ipsum.</p>
+                        <p id="dropdown4_detail"></p>
+                        <!-- <p>Don't look even slightly believable. If you are going to assage of Lorem Ipsum, you need to be sure there isn't an embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat pred chunks as necessary.There are many variations of passages of Lorem Ipsum.</p> -->
                     </div>
                 </div>
             </div>
@@ -363,7 +364,7 @@
             <div class="col-12 text-center">
                 <div class="section-head">
                     <h2>Our Service</h2>
-                    <p>Dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard unknown printer took a quis nostrud exercitatliquip.</p>
+                    <p id="ourservice_detail"></p>
                 </div>
             </div>
         </div>
@@ -372,48 +373,48 @@
             <div class="col-lg-4 col-sm-6">
                 <div class="practise-3-item">
                     <div class="icon-box"><i class="flaticon-consultant"></i></div>
-                    <h5><a href="#">Online Consultancy</a></h5>
-                    <p>Don't look even slightly btkelie.Don't look even slightly believable. If you are going to uspassage of Lorem Ipsum, you need slightly.</p>
+                    <h5><a href="#" id="service1_name"></a></h5>
+                    <p id="service1_detail"></p>
                     <a href="#">→</a>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="practise-3-item">
                     <div class="icon-box"><i class="flaticon-parents"></i></div>
-                    <h5><a href="#">Business Consultancy</a></h5>
-                    <p>Don't look even slightly btkelie.Don't look even slightly believable. If you are going to uspassage of Lorem Ipsum, you need slightly.</p>
+                    <h5><a href="#" id="service2_name"></a></h5>
+                    <p id="service2_detail"></p>
                     <a href="#">→</a>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="practise-3-item">
                     <div class="icon-box"><i class="flaticon-student"></i></div>
-                    <h5><a href="#">Student Consultancy</a></h5>
-                    <p>Don't look even slightly btkelie.Don't look even slightly believable. If you are going to uspassage of Lorem Ipsum, you need slightly.</p>
+                    <h5><a href="#" id="service3_name">Student Consultancy</a></h5>
+                    <p id="service3_detail"></p>
                     <a href="#">→</a>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="practise-3-item">
                     <div class="icon-box"><i class="flaticon-passport"></i></div>
-                    <h5><a href="#" id="immigration"></a></h5>
-                    <p id="immigration-text"</p>
+                    <h5><a href="#" id="service4_name"></a></h5>
+                    <p id="service4_detail"</p>
                     <a href="#">→</a>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="practise-3-item">
                     <div class="icon-box"><i class="flaticon-loan-1"></i></div>
-                    <h5><a href="#">Law Consultancy</a></h5>
-                    <p>Don't look even slightly btkelie.Don't look even slightly believable. If you are going to uspassage of Lorem Ipsum, you need slightly.</p>
+                    <h5><a href="#" id="service5_name"></a></h5>
+                    <p id="service5_detail"></p>
                     <a href="#">→</a>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="practise-3-item">
                     <div class="icon-box"><i class="flaticon-monitor"></i></div>
-                    <h5><a href="#">Career Consultancy</a></h5>
-                    <p>Don't look even slightly.Don't look even slightly believable. If you are going to uspassage of Lorem Ipsum, you need slightly.</p>
+                    <h5><a href="#" id="service6_name"></a></h5>
+                    <p id="service6_detail"></p>
                     <a href="#">→</a>
                 </div>
             </div>
@@ -861,6 +862,9 @@
 
             const data = await response.json();
 
+            // array of ids whose data-bg-image needs to be set rather than innerHTML
+            const attrBgImg = ['background_image']
+
             console.log("Dataaaa", data.cms);
               for (var i = 0; i < data.cms.length; i++) {
                 var key = data.cms[i].key;
@@ -868,7 +872,13 @@
                 var ele = document.getElementById(key)
                 if(ele) {
                     console.log("Eleee",ele)
-                    ele.innerHTML = value;
+                    if(attrBgImg.includes(key)) {
+                        ele.setAttribute('data-bg-image', value)
+                        ele.style.cssText = `background-image:url(${value}) !important;`
+                    } else {
+                        ele.innerHTML = value;
+
+                    }
 
                }
                 console.log("DataIII", data.cms[i])

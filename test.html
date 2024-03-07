@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Example</title>
+    <style>
+        /* Styles for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="col-xl-7 col-md-6">
+        <div class="banner-caption text-left">
+            <h2 class="brand-color" id="banner_heading" onclick="idfunc('banner_heading')">Heading</h2>
+            <h1 class="text-left" id="banner_subheading" onclick="idfunc('banner_subheading')">Subheading</h1>
+            <p id="banner_paragraph" onclick="idfunc('banner_paragraph')">Paragraph text</p>
+            <a href="#" id="banner_button">Button</a>
+        </div>
+    </div>
+
+    <!-- Popup container -->
+    <div id="popup" class="popup">
+        <p id="popupContent"></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        // Function to open the popup and display the clicked element's ID
+        function openPopup(elementId) {
+            var popupContent = document.getElementById("popupContent");
+            popupContent.textContent = "Clicked Element ID: " + elementId;
+
+            var popup = document.getElementById("popup");
+            popup.style.display = "block";
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
+        }
+
+        // Attach click event listeners to h2, h1, and p elements
+        const ids = ['banner_heading','banner_subheading','banner_paragraph','banner_button']
+        ids.forEach(id => {
+            const element = document.getElementById(id)
+            if(element) {
+                console.log(element)
+                element.addEventListener('click', e => {
+                    e.preventDefault()
+                    console.log(id)
+                    openPopup(id);
+
+                })
+            }
+        })
+        function idfunc(Id){
+            /*this.preventDefault();
+            openPopup(Id);
+            console.log(document.getElementById(Id))
+               document.getElementById(Id).addEventListener("click", function () {
+                
+            });*/
+        }
+        
+
+       
+    </script>
+
+</body>
+
+</html>

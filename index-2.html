@@ -22,6 +22,9 @@
             border: 1px solid #ccc;
             z-index: 999;
         }
+        .hidden {
+            display: none;
+        }
     </style>
     <!-- Fav Icon -->
     <link rel="apple-touch-icon" sizes="180x180" href="images/fav-icons/apple-touch-icon.png">
@@ -850,6 +853,7 @@
     <form id="popupForm"
         style="text-align: center; padding: 20px; background-color: #f4f4f4; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
         <input type="hidden" id="element_id" name="element_id">
+        <input type="file" id="choose_field" name="choose_field" class="hidden" />
         <textarea id="popupInput" name="popupInput"
             style="width:100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;"></textarea>
         <div style="display: flex; justify-content: space-between;">
@@ -898,6 +902,7 @@
 <!--Custom js  -->
 <script src="js/custom.js"></script>
 <script>
+    const globals = {data: null, attrBgImg: ['attrBgImg']}
     function closePopup() {
             var popup = document.getElementById("popup");
             popup.style.display = "none";
@@ -921,6 +926,8 @@
             // array of ids whose data-bg-image needs to be set rather than innerHTML
             const attrBgImg = ['background_image']
 
+            globals.data = data 
+
             console.log("Dataaaa", data.cms);
            /* function openPopup(elementId) {
                 var popupContent = document.getElementById("popupContent");
@@ -934,26 +941,28 @@
                 var popup = document.getElementById("popup");
                 popup.style.display = "block";
                 const ele = document.getElementById(elementId)
+                let type = "text"
+                const cmsField = data.cms?.find(item => item.key == elementId) 
                 if(ele) {
-                    document.getElementById("popupInput").value = ele?.innerHTML
+                    if(cmsField?.type === 'image') {
+                        document.querySelector('#choose_field').classList.remove('hidden')
+                        if (attrBgImg.includes(elementId)) {
+                            document.getElementById("popupInput").value = ele?.getAttribute('data-bg-image')
+                        } else {
+                            document.getElementById("popupInput").value = ele?.src
+                        }    
+                    } else {
+                        document.querySelector('#choose_field').classList.add('hidden')
+                        document.getElementById("popupInput").value = ele?.innerHTML
+                    }
                     document.getElementById("element_id").value = elementId
                 }
 
-                // Make API call to fetch data based on element ID
-                /* fetch(`https://cms-managment.vercel.app/cms/get-by-key/${elementId}/home_page`)
-                    .then(response => response.json())
-                    .then(data => {
-                        // Populate form field with fetched data
-                        console.log("Dataaa",data)
-                        document.getElementById("popupInput").value = data.data[0].value;
-                    })
-                    .catch(error => console.error('Error fetching data:', error));
-            */
                 }
 
 
               for (var i = 0; i < data.cms.length; i++) {
-                var key = data.cms[i].key;
+                var key = data.cms[i].key;2
                 var value = data.cms[i].value
                 var type = data.cms[i].type 
                 var ele = document.getElementById(key)
@@ -961,12 +970,12 @@
                 
                 if(ele) {
                     console.log("Eleee",ele)
-                     ele.addEventListener('click', e => {
+                      ele.addEventListener('click', e => {
                         e.preventDefault()
-                        console.log(key)
+                        console.log(e.target.id)
                         openPopup(e.target.id);
-
                     })
+                   
                     if(type == 'image') {
                         if (attrBgImg.includes(key)) {
                             ele.setAttribute('data-bg-image', value)
@@ -976,6 +985,7 @@
                         }
                     } else {
                         ele.innerHTML = value;
+                        
                         
                     }
 
@@ -992,16 +1002,80 @@
         }
     }
 
+    function showImage(imagefile, elementId) {
+            // Create a new FileReader
+            const reader = new FileReader();
+
+            // Define the onload event for the reader
+            reader.onload = function (e) {
+                // Get the image element
+                const previewImage = document.getElementById(elementId);
+
+                // Set the source of the image element to the data URL of the selected file
+                previewImage.src = e.target.result;
+
+                // Display the image
+                previewImage.style.display = 'block';
+            };
+
+            // Read the selected file as a data URL
+            reader.readAsDataURL(imagefile);
+        }
+
     // Call the fetchData function
     fetchData();
-    document.getElementById('popupForm').addEventListener('submit',(e)=>{
+
+    async function updateImageApi(elementId, image) {
+        try {
+            let apiUrl = new URL(`https://cms-managment.vercel.app/cms/update-image-by-key/${elementId}`)
+            const fd = new FormData()
+            fd.append('editImage', image)
+            fd.append('id', elementId)
+            return fetch(apiUrl, {
+                body: fd,
+                method: 'PUT'
+            })
+        } catch(e) {
+            return null 
+        }
+    }
+
+    document.getElementById('popupForm').addEventListener('submit',async (e)=>{
       e.preventDefault()
       const fd = new FormData(e.target)
       
       const popInput = fd.get('popupInput')
       const elementId = fd.get('element_id')
+      const choose_field = fd.get('choose_field')
+      console.log(choose_field)
       console.log(popInput , elementId)
-      document.getElementById(elementId).innerHTML = popInput
+      let type = "text"
+      const ele = document.getElementById(elementId)
+      if(ele) {
+          const cmsField = globals.data?.cms?.find(item => item.key == elementId)
+          console.log(cmsField) 
+          if(cmsField?.type == 'image') {
+            if(globals.attrBgImg.includes(elementId)) {
+                ele.setAttribute('data-bg-image', popInput)
+                if (choose_field instanceof File) {
+                    console.log('updating image')
+                    updateImageApi(cmsField?.id, choose_field).then(res => res.json()).then(res => console.log(res))
+                    return;
+                }
+            } else {
+                ele.src = popInput
+                if(choose_field instanceof File) {
+                    // ele.src = choose_field.name
+                    showImage(choose_field, elementId)
+                    console.log('updating image')
+                    updateImageApi(cmsField?.id, choose_field).then(res => res.json()).then(res => console.log(res))
+                    return;
+                }
+            }
+          } else {
+              ele.innerHTML = popInput
+          }
+      }
       const apiUrl = `https://cms-managment.vercel.app/cms/update-by-key/${elementId}/home_page`;
 
         const requestBody = {

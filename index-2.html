@@ -1060,6 +1060,7 @@
                 if (choose_field instanceof File) {
                     console.log('updating image')
                     updateImageApi(cmsField?.id, choose_field).then(res => res.json()).then(res => console.log(res))
+                    closePopup();
                     return;
                 }
             } else {
@@ -1069,6 +1070,7 @@
                     showImage(choose_field, elementId)
                     console.log('updating image')
                     updateImageApi(cmsField?.id, choose_field).then(res => res.json()).then(res => console.log(res))
+                   closePopup()
                     return;
                 }
             }
